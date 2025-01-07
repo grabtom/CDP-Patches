@@ -7,12 +7,12 @@ import requests
 from websockets.sync import client
 
 try:
-    from patchright.async_api import Browser as AsyncBrowser
-    from patchright.async_api import BrowserContext as AsyncContext
-    from patchright.async_api import Error as AsyncError
-    from patchright.async_api import Error as SyncError
-    from patchright.sync_api import Browser as SyncBrowser
-    from patchright.sync_api import BrowserContext as SyncContext
+    from playwright.async_api import Browser as AsyncBrowser
+    from playwright.async_api import BrowserContext as AsyncContext
+    from playwright.async_api import Error as AsyncError
+    from playwright.async_api import Error as SyncError
+    from playwright.sync_api import Browser as SyncBrowser
+    from playwright.sync_api import BrowserContext as SyncContext
 except ImportError:
     AsyncBrowser: Type["AsyncBrowser"] = "AsyncBrowser"  # type: ignore[no-redef]
     AsyncContext: Type["AsyncContext"] = "AsyncContext"  # type: ignore[no-redef]
