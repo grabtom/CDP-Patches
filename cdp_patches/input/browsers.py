@@ -7,12 +7,12 @@ import requests
 from websockets.sync import client
 
 try:
-    from playwright.async_api import Browser as AsyncBrowser
-    from playwright.async_api import BrowserContext as AsyncContext
-    from playwright.async_api import Error as AsyncError
-    from playwright.async_api import Error as SyncError
-    from playwright.sync_api import Browser as SyncBrowser
-    from playwright.sync_api import BrowserContext as SyncContext
+    from patchright.async_api import Browser as AsyncBrowser
+    from patchright.async_api import BrowserContext as AsyncContext
+    from patchright.async_api import Error as AsyncError
+    from patchright.async_api import Error as SyncError
+    from patchright.sync_api import Browser as SyncBrowser
+    from patchright.sync_api import BrowserContext as SyncContext
 except ImportError:
     AsyncBrowser: Type["AsyncBrowser"] = "AsyncBrowser"  # type: ignore[no-redef]
     AsyncContext: Type["AsyncContext"] = "AsyncContext"  # type: ignore[no-redef]
@@ -22,19 +22,19 @@ except ImportError:
 try:
     from botright.extended_typing import BrowserContext as BotrightContext
 except ImportError:
-    BotrightContext: Type["BotrightContext"] = "BotrightContext"  # type: ignore[no-redef]
+    BotrightContext: Type["BotrightContext"] = type("BotrightContext", (object, ), {})   # type: ignore[no-redef]
 
 try:
     from selenium.webdriver import Chrome as SeleniumChrome
 except ImportError:
-    SeleniumChrome: Type["SeleniumChrome"] = "SeleniumChrome"  # type: ignore[no-redef]
+    SeleniumChrome: Type["SeleniumChrome"] = type("SeleniumChrome", (object, ), {})   # type: ignore[no-redef]
 
 try:
     from selenium_driverless.sync.webdriver import Chrome as DriverlessSyncChrome
     from selenium_driverless.webdriver import Chrome as DriverlessAsyncChrome
 except ImportError:
-    DriverlessAsyncChrome: Type["DriverlessAsyncChrome"] = "DriverlessAsyncChrome"  # type: ignore[no-redef]
-    DriverlessSyncChrome: Type["DriverlessSyncChrome"] = "DriverlessSyncChrome"  # type: ignore[no-redef]
+    DriverlessAsyncChrome: Type["DriverlessAsyncChrome"] = type("DriverlessAsyncChrome", (object, ), {})  # type: ignore[no-redef]
+    DriverlessSyncChrome: Type["DriverlessSyncChrome"] = type("DriverlessSyncChrome", (object, ), {})  # type: ignore[no-redef]
 
 all_browsers = Union[AsyncContext, AsyncBrowser, SyncContext, SyncBrowser, BotrightContext, SeleniumChrome, DriverlessAsyncChrome, DriverlessSyncChrome]
 sync_browsers = Union[SeleniumChrome, SyncContext, SyncBrowser, DriverlessSyncChrome]
